@@ -50,15 +50,50 @@ window.addEventListener("load", function () {
     backbutton.onclick = function () {
         let prev = sudoku.story.pop();
         if (prev != null) {
-            sudoku.board[prev.x][prev.y].value=prev.prev;
+            sudoku.board[prev.x][prev.y].value = prev.prev;
             sudoku.print();
         }
     };
     //check
     let checkbutton = document.getElementById('check');
-    checkbutton.addEventListener('click',function() {sudoku.check()});
-    
-    
+    checkbutton.addEventListener('click', function () {
+        sudoku.check()
+    });
+
+    canvas = document.getElementById('noteCanvas');
+    canvas.addEventListener('touchstart', handleStart);
+    canvas.addEventListener('touchmove', handleMove);
+    ctx = canvas.getContext('2d');
+    debug=document.getElementById('debug');
+    function handleStart(e){
+            debug.innerHTML="radius :"+e.targetTouches[0].radiusX+"; force:"+e.targetTouches[0].force+";";
+            if(e.targetTouches[0].radiusX === 0){
+                e.preventDefault();
+                var x = e.targetTouches[0].pageX;
+                var y = e.targetTouches[0].pageY;
+                ctx.fillStyle = '#0000FF';
+                ctx.fillRect(x, y, 2, 2);
+                ctx.beginPath();
+                ctx.moveTo(x,y);
+            }
+		}
+				
+		function handleMove(e){
+            if(e.targetTouches[0].radiusX === 0){
+                e.preventDefault();
+                var x = e.targetTouches[0].pageX;
+                var y = e.targetTouches[0].pageY;
+                ctx.lineTo(x,y);
+                ctx.strokeStyle='#0000FF';
+                ctx.lineWidth=2;
+                ctx.stroke();
+            
+            }
+            else{
+                ctx.endPath();
+            }
+        }
+
     sudoku.generate();
 
     // Selezione di tutti i tasti
