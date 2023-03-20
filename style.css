@@ -1,0 +1,109 @@
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+td {
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    /*font-weight: bold;*/
+}
+
+td:nth-child(3n),
+td:nth-child(6n) {
+    border-right: 3px solid black;
+}
+
+tr:nth-child(3n) td {
+    border-bottom: 3px solid black;
+}
+
+#keypad button {
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EEE;
+    color: #333;
+    cursor: pointer;
+    padding: 0px;
+}
+
+/* Stile dei tasti selezionati */
+button.selected {
+    background-color: #333 !important;
+    color: #FFF !important;
+}
+
+#keypad {
+    margin: auto;
+    width: 350px;
+}
+
+td.selected {
+    background: #2c2;
+
+}
+
+.lightSelected {
+    background: #aea;
+}
+
+td.error {
+    color: red;
+}
+
+/*.minitable {
+    height: 13px;
+    width: 13px;
+    display: inline-block;
+    font-size: 10px;
+}
+
+.minitable div {
+    width: 13px;
+    height: 13px;
+    font-size: 10px;
+    display: inline-block;
+}
+
+.minitable td.circle {
+    border: 1px solid black;
+    border-radius: 50%;
+}*/
+.circle {
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+#keypad img {
+    width: 25px;
+    height: 20px;
+}
+
+.minitable {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+}
+
+.minitable-cell {
+    float: left;
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    padding: 0;
+    font-size: 9px;
+    text-align: center;
+    line-height: 13px;
+    box-sizing: border-box;
+}
+
+.miniclear {
+    clear: both;
+}

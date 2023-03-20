@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sudoku Board</title>
+    <link rel="stylesheet" href="style.css" \>
+    <script type="application/javascript" src="js/SCell.js"></script>
+    <script type="application/javascript" src="js/init.js"></script>
+    <script type="application/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+    <button onclick="while(!sudoku.generate());">genera</button>
+    <button onclick="sudoku.print();">stampa</button>
+    <button onclick="sudoku.print(true);">soluzione</button>
+    <div id="loading"></div>
+    <table id="sudoku">
+
+    </table>
+    <div id="keypad">
+        <div>
+            <button id="one" class="numbers" data-number="1">1</button>
+            <button id="two" class="numbers" data-number="2">2</button>
+            <button id="three" class="numbers" data-number="3">3</button>
+            <button id="note" class="function" data-number="1">
+                <img src="img/pencil-outline.svg" title="note" alt="note" />
+            </button>
+            <button id="back" data-number="b">
+                <img src="img/return-up-back-outline.svg" title="back" alt="back" />
+            </button>
+        </div>
+        <div>
+            <button id="four" class="numbers" data-number="4">4</button>
+            <button id="five" class="numbers" data-number="5">5</button>
+            <button id="six" class="numbers" data-number="6">6</button>
+            <button id="circle" class="function" data-number="2">
+                <img src="img/ellipse-outline.svg" title="circle numbers" alt="circle" />
+            </button>
+            <button id="check" data-number="c">
+                <img src="img/checkmark-outline.svg" title="check" alt="check" />
+            </button>
+        </div>
+        <div>
+            <button id="seven" class="numbers" data-number="7">7</button>
+            <button id="eight" class="numbers" data-number="8">8</button>
+            <button id="nine" class="numbers" data-number="9">9</button>
+            <button id="cancel" class="function" data-number="3">
+                <img src="img/pencil-outline.svg" title="cancel" alt="cancel" style="    transform: rotate(180deg)" />
+            </button>
+        </div>
+        <!--<div>
+            <button id="clear" class="function">C</button>
+            <button id="zero" class="numbers">0</button>
+            <button id="equal" class="function">=</button>
+            <button id="division" class="function">/</button>
+        </div>-->
+    </div>
+  
+    <table id="solution">
+    </table>
+</body></html>
