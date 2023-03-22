@@ -1,3 +1,7 @@
+let canvas;
+let ctx;
+let debug;
+
 window.addEventListener("load", function () {
     //*********************************init**********************
     //*******generate table **********
@@ -59,40 +63,45 @@ window.addEventListener("load", function () {
     checkbutton.addEventListener('click', function () {
         sudoku.check()
     });
-
+    //**********************canvas
     canvas = document.getElementById('noteCanvas');
     canvas.addEventListener('touchstart', handleStart);
     canvas.addEventListener('touchmove', handleMove);
+    debug = document.getElementById('debug');
+
     ctx = canvas.getContext('2d');
-    debug=document.getElementById('debug');
-    function handleStart(e){
-            debug.innerHTML="radius :"+e.targetTouches[0].radiusX+"; force:"+e.targetTouches[0].force+";";
-            if(e.targetTouches[0].radiusX === 0){
-                e.preventDefault();
-                var x = e.targetTouches[0].pageX;
-                var y = e.targetTouches[0].pageY;
-                ctx.fillStyle = '#0000FF';
-                ctx.fillRect(x, y, 2, 2);
-                ctx.beginPath();
-                ctx.moveTo(x,y);
-            }
-		}
-				
-		function handleMove(e){
-            if(e.targetTouches[0].radiusX === 0){
-                e.preventDefault();
-                var x = e.targetTouches[0].pageX;
-                var y = e.targetTouches[0].pageY;
-                ctx.lineTo(x,y);
-                ctx.strokeStyle='#0000FF';
-                ctx.lineWidth=2;
-                ctx.stroke();
-            
-            }
-            else{
-                ctx.endPath();
-            }
+
+    let ignoreradius = false;
+
+    function handleStart(e) {
+
+        debug.innerHTML = "radius :" + e.targetTouches[0].radiusX + "; force:" + e.targetTouches[0].force + ";";
+        if ((e.targetTouches[0].radiusX === 0) || (ignoreradius)) {
+            e.preventDefault();
+            var x = e.targetTouches[0].pageX - this.offsetLeft;
+            var y = e.targetTouches[0].pageY - this.offsetTop;
+
+            ctx.fillStyle = '#0000FF';
+            ctx.fillRect(x, y, 2, 2);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
         }
+    }
+
+    function handleMove(e) {
+        if ((e.targetTouches[0].radiusX === 0) || (ignoreradius)) {
+            e.preventDefault();
+            var x = e.targetTouches[0].pageX - this.offsetLeft;
+            var y = e.targetTouches[0].pageY - this.offsetTop;
+            ctx.lineTo(x, y);
+            ctx.strokeStyle = '#0000FF';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+        } else {
+            ctx.endPath();
+        }
+    }
 
     sudoku.generate();
 
