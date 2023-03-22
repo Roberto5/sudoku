@@ -84,6 +84,7 @@ td.error {
 #keypad img {
     width: 25px;
     height: 20px;
+    
 }
 
 .minitable {
@@ -106,4 +107,11 @@ td.error {
 
 .miniclear {
     clear: both;
+}
+button {
+    pointer-events: all;
+}
+canvas {
+
+  pointer-events: all;
 }

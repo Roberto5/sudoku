@@ -4,6 +4,11 @@ let debug;
 
 window.addEventListener("load", function () {
     //*********************************init**********************
+    container = document.getElementById("container");
+    container.onclick=function(e) {
+        console.log(e,this);
+        event=e;
+    }
     //*******generate table **********
     table = document.getElementById("sudoku");
     var body = table.createTBody();
@@ -71,10 +76,10 @@ window.addEventListener("load", function () {
 
     ctx = canvas.getContext('2d');
 
-    let ignoreradius = false;
+    let ignoreradius = true;
 
     function handleStart(e) {
-
+        console.log(event.target.id);
         debug.innerHTML = "radius :" + e.targetTouches[0].radiusX + "; force:" + e.targetTouches[0].force + ";";
         if ((e.targetTouches[0].radiusX === 0) || (ignoreradius)) {
             e.preventDefault();
@@ -86,6 +91,7 @@ window.addEventListener("load", function () {
             ctx.beginPath();
             ctx.moveTo(x, y);
         }
+        return true;
     }
 
     function handleMove(e) {
@@ -99,8 +105,9 @@ window.addEventListener("load", function () {
             ctx.stroke();
 
         } else {
-            ctx.endPath();
+            //ctx.endPath();
         }
+        return true;
     }
 
     sudoku.generate();
