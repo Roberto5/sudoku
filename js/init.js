@@ -93,7 +93,7 @@ window.addEventListener("load", function () {
 
     ctx = canvas.getContext('2d');
 
-    let ignoreradius = true;
+    let ignoreradius = false;
     /*// ottieni il riferimento al canvas e alla tabella del Sudoku
 const canvas = document.getElementById("notecanvas");
 const table = document.getElementById("sudokuTable");
