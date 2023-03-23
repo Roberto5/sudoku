@@ -84,7 +84,12 @@ td.error {
 #keypad img {
     width: 25px;
     height: 20px;
-    
+
+}
+
+#keypad {
+    position: relative;
+    top: -400px;
 }
 
 .minitable {
@@ -108,10 +113,16 @@ td.error {
 .miniclear {
     clear: both;
 }
-button {
-    pointer-events: all;
-}
-canvas {
 
-  pointer-events: all;
+#sudoku {
+    position: relative;
+    top: -400px;
+}
+
+#noteCanvas {
+    border: 1px solid;
+    display: block;
+    margin: auto;
+    z-index: 100;
+    position: relative;
 }

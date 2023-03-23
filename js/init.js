@@ -3,12 +3,12 @@ let ctx;
 let debug;
 
 window.addEventListener("load", function () {
-    //*********************************init**********************
+    /*********************************init**********************
     container = document.getElementById("container");
     container.onclick=function(e) {
         console.log(e,this);
         event=e;
-    }
+    }*/
     //*******generate table **********
     table = document.getElementById("sudoku");
     var body = table.createTBody();
@@ -68,17 +68,74 @@ window.addEventListener("load", function () {
     checkbutton.addEventListener('click', function () {
         sudoku.check()
     });
-    //**********************canvas
+    //**********************canvas**************
     canvas = document.getElementById('noteCanvas');
+    canvas.width = table.clientWidth;
+    canvas.height = table.clientHeight;
+    table.style.top = '-' + canvas.height + 'px';
     canvas.addEventListener('touchstart', handleStart);
     canvas.addEventListener('touchmove', handleMove);
+    canvas.onclick = function (e) {
+        // ottieni le coordinate del click sul canvas
+        const x = e.clientX - canvas.offsetLeft;
+        const y = e.clientY - canvas.offsetTop;
+        const dimcell = Math.floor(canvas.offsetWidth / 9);
+        // determina la cella corrispondente sulla griglia di gioco
+        const row = Math.floor(y / dimcell); // 50 è la dimensione di ogni cella
+        const col = Math.floor(x / dimcell);
+        // ottieni la cella corrispondente dalla tabella del Sudoku
+        const cell = table.rows[row].cells[col];
+
+        // avvia l'evento onclick della cella corrispondente
+        cell.click();
+    }
     debug = document.getElementById('debug');
 
     ctx = canvas.getContext('2d');
 
     let ignoreradius = true;
+    /*// ottieni il riferimento al canvas e alla tabella del Sudoku
+const canvas = document.getElementById("notecanvas");
+const table = document.getElementById("sudokuTable");
 
+// aggiungi un gestore di eventi per il click sinistro del canvas
+canvas.addEventListener("click", function(event) {
+  // ottieni le coordinate del click sul canvas
+  const x = event.clientX - canvas.offsetLeft;
+  const y = event.clientY - canvas.offsetTop;
+
+  // determina la cella corrispondente sulla griglia di gioco
+  const row = Math.floor(y / 50); // 50 è la dimensione di ogni cella
+  const col = Math.floor(x / 50);
+
+  // ottieni la cella corrispondente dalla tabella del Sudoku
+  const cell = table.rows[row].cells[col];
+
+  // avvia l'evento onclick della cella corrispondente
+  cell.click();
+});
+
+// aggiungi un gestore di eventi per il click destro del canvas
+canvas.addEventListener("contextmenu", function(event) {
+  // impedisce il comportamento predefinito del click destro
+  event.preventDefault();
+
+  // ottieni le coordinate del click sul canvas
+  const x = event.clientX - canvas.offsetLeft;
+  const y = event.clientY -
+*/
+    /****
+     const boundingRect = myElement.getBoundingClientRect();
+      
+      if (
+        event.clientX >= boundingRect.left &&
+        event.clientX <= boundingRect.right &&
+        event.clientY >= boundingRect.top &&
+        event.clientY <= boundingRect.bottom
+      )
+        */ ///
     function handleStart(e) {
+        //getBoundingClientRect 
         console.log(event.target.id);
         debug.innerHTML = "radius :" + e.targetTouches[0].radiusX + "; force:" + e.targetTouches[0].force + ";";
         if ((e.targetTouches[0].radiusX === 0) || (ignoreradius)) {
